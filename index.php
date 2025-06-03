@@ -197,7 +197,7 @@ include 'koneksi.php';
                     const harga = parseInt(selectedOption.getAttribute('data-harga'));
                     const subtotal = harga * jumlah;
 
-                    // Push item ke array keranjang
+                    //push item
                     keranjang.push({
                         id: menuId,
                         nama: menuNama,
@@ -206,7 +206,7 @@ include 'koneksi.php';
                         subtotal: subtotal
                     });
 
-                    //update list di tampilan
+                    //update list 
                     const listKeranjang = document.getElementById('listKeranjang');
                     const item = document.createElement('li');
                     item.className = 'list-group-item d-flex justify-content-between align-items-center';
@@ -248,9 +248,6 @@ include 'koneksi.php';
 
                     fetch('proses_bayar.php', {
                         method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                        },
                         body: JSON.stringify(data)
                     })
                     .then(response => {
@@ -312,33 +309,28 @@ include 'koneksi.php';
         </div>
         <script>
             function kirimContact() {
-                const nama = document.getElementById('nama_contact').value.trim();
-                const email = document.getElementById('email_contact').value.trim();
-                const pesan = document.getElementById('pesan_contact').value.trim();
+            const form = document.getElementById('formContact');
+            const formData = new FormData(form);
 
-                if (!nama || !email || !pesan) {
-                    alert('Semua field wajib diisi!');
-                    return;
-                }
-
-                fetch('contact_us.php', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                    body: `nama=${encodeURIComponent(nama)}&email=${encodeURIComponent(email)}&pesan=${encodeURIComponent(pesan)}`
-                })
-                .then(res => res.json())
-                .then(data => {
-                    alert(data.message);
-                    if (data.success) {
-                        document.getElementById('formContact').reset();
-                    }
-                })
-                .catch(() => alert('Gagal mengirim pesan.'));
-                }
+            fetch('contact_us.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(res => res.json())
+            .then(data => {
+                alert(data.message);
+                if (data.success) form.reset();
+            })
+            .catch(() => alert('Gagal mengirim pesan.'));
+        }
         </script>
         </section>
 
-
+    <footer class="bg-dark text-white py-4">
+      <div class="container text-center">
+        <p>&copy; 2025 Kantin SMK Telkom Jakarta. Dibuat Lutfi Abrar Rahman</p>
+      </div>
+    </footer>
 
     </div>
 </body>
