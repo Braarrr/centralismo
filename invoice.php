@@ -82,12 +82,6 @@ $items->data_seek(0); // Reset pointer result
                     </tr>
                 </tfoot>
             </table>
-
-            <div class="text-center mt-4">
-                <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=Transaksi-<?= $id_transaksi ?>" 
-                     alt="QR Code Transaksi" class="img-thumbnail">
-                <p class="mt-2 text-muted">Simpan QR ini sebagai bukti pembayaran</p>
-            </div>
         </div>
     </div>
 </div>
