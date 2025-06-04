@@ -1,0 +1,24 @@
+CREATE TABLE detail_transaksi (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nama_pembeli VARCHAR(100),
+    id_menu int,
+    jumlah INT,
+    harga_satuan INT,
+    total_harga INT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (id_menu) REFERENCES menu(id_menu)
+);
+
+CREATE TABLE kantin(
+    id_kantin INT PRIMARY KEY,
+    nama_kantin varchar(100)
+    );
+   
+create table menu
+id_menu
+id_kantin
+nama_menu
+harga
+stok
+foto_menu
+foreign key (id_kantin) REFERENCES kantin(id_kantin)
